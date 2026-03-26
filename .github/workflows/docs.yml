@@ -1,22 +1,27 @@
-name: Docs
+name: Release docs
 on:
   push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+    branches:
+      - master
+
+permissions:
+  contents: write
+
 jobs:
-  docs:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+
+      - name: Configure Python
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
-      - uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-docs-${{ hashFiles('**/pyproject.toml') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-docs-
-      - run: pip install -e ".[docs]"
-      - run: mkdocs build
+          python-version: 3.x
+
+      - name: Install dependencies
+        run: |
+          pip install -e ".[docs]"
+
+      - name: Build and Deploy
+        # gh-deploy creates the gh-pages branch and pushes static content there
+        run: mkdocs gh-deploy --force
