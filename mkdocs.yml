@@ -1,0 +1,37 @@
+docs_dir: docs
+
+site_name: shelluha
+site_description: Shell command execution utilities
+site_url: https://qarium.github.io/shelluha/
+repo_url: https://github.com/qarium/shelluha
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  custom_dir: docs/overrides
+  palette:
+    - scheme: default
+      primary: custom
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+        media: "(prefers-color-scheme: light)"
+    - scheme: slate
+      primary: custom
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+        media: "(prefers-color-scheme: dark)"
+  features:
+    - navigation.tabs
+    - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - API Reference: api-reference.md
