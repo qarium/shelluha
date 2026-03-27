@@ -12,11 +12,16 @@
 
 ### Workflow Registry
 
-| Workflow | File                            | Trigger         | Purpose             |
-|----------|---------------------------------|-----------------|---------------------|
-| Lint     | `.github/workflows/lint.yml`    | push/PR to master | ruff check + format |
-| Tests    | `.github/workflows/tests.yml`   | push/PR to master | pytest matrix       |
-| Docs     | `.github/workflows/docs.yml`    | push/PR to master | mkdocs build        |
-| Publish  | `.github/workflows/publish.yml` | tag v*          | PyPI release (token auth) |
+| Workflow | File                            | Trigger               | Purpose             |
+|----------|---------------------------------|-----------------------|---------------------|
+| Lint     | `.github/workflows/lint.yml`    | push/PR to master     | ruff check + format |
+| Tests    | `.github/workflows/tests.yml`   | push/PR to master     | pytest matrix       |
+| Docs     | `.github/workflows/docs.yml`    | push to master        | mkdocs gh-deploy    |
+| Publish  | `.github/workflows/publish.yml` | tag v*                | PyPI release        |
 
 ### Conventions
+
+## Lessons
+
+| Problem | Why | How to prevent |
+|---------|-----|----------------|

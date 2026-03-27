@@ -27,10 +27,14 @@ Project test configuration. Used by the `qarium:employees:qa:feature` skill.
 
 | Helper | Location | Purpose |
 |--------|----------|---------|
-| `get_default_file_path` | `tests/test_shell/conftest.py` | Fixture to get/restore current working directory |
 
 ### Conventions
 
 - Naming: `test_<what>_<scenario>`
 - Never mock `builtins.open` — use `tmp_path` fixture
 - Integration tests use `pytest.mark.skipif` when external tools unavailable
+
+## Lessons
+
+| Problem | Why | How to prevent |
+|---------|-----|----------------|
