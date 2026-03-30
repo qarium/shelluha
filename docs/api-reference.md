@@ -42,9 +42,9 @@ def shell_exec(
 **Example:**
 
 ```python
-from shelluha.shell import shell_exec
+from shelluha import shell
 
-output = shell_exec("ls -la", cwd="/tmp")
+output = shell.shell_exec("ls -la", cwd="/tmp")
 ```
 
 ---
@@ -67,9 +67,9 @@ def cd(path: str) -> Generator:
 **Example:**
 
 ```python
-from shelluha.shell import cd
+from shelluha import shell
 
-with cd("/tmp"):
+with shell.cd("/tmp"):
     # Working directory is /tmp
     pass
 # Working directory restored
@@ -107,7 +107,7 @@ class ShellCommand:
 **Example:**
 
 ```python
-from shelluha.shell import ShellCommand
+from shelluha import ShellCommand
 
 git = ShellCommand("git")
 git("status")
@@ -132,11 +132,11 @@ class ShellExecError(Exception):
 **Example:**
 
 ```python
-from shelluha.shell import shell_exec, ShellExecError
+from shelluha import shell
 
 try:
-    shell_exec("false")
-except ShellExecError as e:
+    shell.shell_exec("false")
+except shell.ShellExecError as e:
     print(e)  # "false\n" or "false" if no stderr
 ```
 
@@ -144,19 +144,21 @@ except ShellExecError as e:
 
 ## Pre-initialized Commands
 
-The module provides pre-initialized `ShellCommand` instances:
+The module provides pre-initialized `ShellCommand` instances accessible via the `shell` module:
 
 ```python
-ps = ShellCommand("ps")
-df = ShellCommand("df")
-du = ShellCommand("du")
-cat = ShellCommand("cat")
-tar = ShellCommand("tar")
-tail = ShellCommand("tail")
-head = ShellCommand("head")
-touch = ShellCommand("touch")
-chown = ShellCommand("chown")
-chmod = ShellCommand("chmod")
-chgrp = ShellCommand("chgrp")
-which = ShellCommand("which")
+from shelluha import shell
+
+shell.ps("-aux")
+shell.df("-h")
+shell.du("-sh /home")
+shell.cat("file.txt")
+shell.tar("-czf archive.tar.gz .")
+shell.tail("-f logfile")
+shell.head("-n 10 file.txt")
+shell.touch("newfile.txt")
+shell.chown("user:group file")
+shell.chmod("755 script.sh")
+shell.chgrp("group file")
+shell.which("python")
 ```

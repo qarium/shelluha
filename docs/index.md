@@ -18,18 +18,18 @@ pip install shelluha
 ## Quick Start
 
 ```python
-from shelluha.shell import shell_exec, ShellCommand, cd
+from shelluha import shell, ShellCommand
 
 # Execute a command
-output = shell_exec("ls -la")
+output = shell.shell_exec("ls -la")
 
 # Create a reusable command
 docker = ShellCommand("docker")
 docker("ps")
 
 # Temporary directory change
-with cd("/tmp"):
-    shell_exec("pwd")
+with shell.cd("/tmp"):
+    shell.shell_exec("pwd")
 ```
 
 ## Documentation

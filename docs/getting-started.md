@@ -12,23 +12,23 @@ pip install shelluha
 
 ### Execute a Command
 
-Use `shell_exec()` to run shell commands:
+Use `shell.shell_exec()` to run shell commands:
 
 ```python
-from shelluha.shell import shell_exec
+from shelluha import shell
 
 # Simple command
-output = shell_exec("ls -la")
+output = shell.shell_exec("ls -la")
 print(output)
 
 # With sudo
-output = shell_exec("apt update", is_sudo=True)
+output = shell.shell_exec("apt update", is_sudo=True)
 
 # Auto-confirm prompts
-output = shell_exec("rm -rf dir", yes=True)
+output = shell.shell_exec("rm -rf dir", yes=True)
 
 # Provide input to prompts
-output = shell_exec("ssh-keygen", prompt_input=["", "", ""])
+output = shell.shell_exec("ssh-keygen", prompt_input=["", "", ""])
 ```
 
 ### Create Reusable Commands
@@ -36,7 +36,7 @@ output = shell_exec("ssh-keygen", prompt_input=["", "", ""])
 Use `ShellCommand` to wrap frequently used binaries:
 
 ```python
-from shelluha.shell import ShellCommand
+from shelluha import ShellCommand
 
 docker = ShellCommand("docker")
 
@@ -50,17 +50,17 @@ print(docker.bin)  # "docker"
 
 ### Temporary Directory Change
 
-Use `cd()` as a context manager:
+Use `shell.cd()` as a context manager:
 
 ```python
-from shelluha.shell import cd
+from shelluha import shell
 
-with cd("/tmp"):
+with shell.cd("/tmp"):
     # Working directory is now /tmp
-    shell_exec("pwd")  # /tmp
+    shell.shell_exec("pwd")  # /tmp
 
 # Working directory is restored
-shell_exec("pwd")  # original directory
+shell.shell_exec("pwd")  # original directory
 ```
 
 ### Error Handling
@@ -68,11 +68,11 @@ shell_exec("pwd")  # original directory
 Commands that fail raise `ShellExecError`:
 
 ```python
-from shelluha.shell import shell_exec, ShellExecError
+from shelluha import shell
 
 try:
-    shell_exec("exit 1")
-except ShellExecError as e:
+    shell.shell_exec("exit 1")
+except shell.ShellExecError as e:
     print(f"Command failed: {e}")
 ```
 
@@ -81,9 +81,9 @@ except ShellExecError as e:
 The following commands are available out of the box:
 
 ```python
-from shelluha.shell import ps, df, du, cat, tar, tail, head, touch, chown, chmod, chgrp, which
+from shelluha import shell
 
-ps("-aux")
-df("-h")
-du("-sh /home")
+shell.ps("-aux")
+shell.df("-h")
+shell.du("-sh /home")
 ```
