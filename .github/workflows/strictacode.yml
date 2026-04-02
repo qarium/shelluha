@@ -3,10 +3,10 @@ name: Strictacode
 on:
   push:
     branches:
-      - master
+      - 0.0.x
   pull_request:
     branches:
-      - master
+      - 0.0.x
 
 jobs:
   analyze:
@@ -32,9 +32,9 @@ jobs:
           install-cmd: pip install strictacode
           working-directory: shelluha
         env:
-          STRICTACODE_SCORE: "60"
-          STRICTACODE_RP: "70"
-          STRICTACODE_SCORE_DIFF: "10"
+          STRICTACODE_SCORE: "40"
+          STRICTACODE_RP: "40"
+          STRICTACODE_SCORE_DIFF: "3"
           STRICTACODE_RP_DIFF: "5"
           STRICTACODE_OP: "40"
           STRICTACODE_IMB: "35"
