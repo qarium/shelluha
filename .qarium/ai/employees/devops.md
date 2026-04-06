@@ -23,6 +23,8 @@
 
 ### Conventions
 
+- tests.yml, publish.yml, new_version.yml are callers using reusable workflows from qarium/ci@0.0.x — contain only `uses:`, `with:`, `secrets:`, no steps/runs-on/strategy
+
 ## Lessons
 
 | Problem | Why | How to prevent |
