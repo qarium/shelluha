@@ -19,11 +19,12 @@
 | Docs     | `.github/workflows/docs.yml`    | push to 0.0.x         | mkdocs gh-deploy    |
 | Strictacode | `.github/workflows/strictacode.yml` | push/PR to 0.0.x | code quality analysis |
 | Publish  | `.github/workflows/publish.yml` | workflow_dispatch     | PyPI release + GitHub Release |
+| Notify   | `.github/workflows/notify.yml`  | workflow_run: Publish Release completed | Telegram notification on release |
 | New Version | `.github/workflows/new_version.yml` | workflow_dispatch | create version branch |
 
 ### Conventions
 
-- tests.yml, publish.yml, new_version.yml are callers using reusable workflows from qarium/ci@0.0.x — contain only `uses:`, `with:`, `secrets:`, no steps/runs-on/strategy
+- tests.yml, publish.yml, new_version.yml, notify.yml are callers using reusable workflows from qarium/ci@0.0.x — contain only `uses:`, `with:`, `secrets:`, no steps/runs-on/strategy
 
 ## Lessons
 
